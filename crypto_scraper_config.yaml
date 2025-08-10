@@ -1,0 +1,535 @@
+# crypto_scraper_config.yaml
+# Comprehensive configuration combining all sources from scripts + additional quality sources
+
+# Database settings
+database_path: "crypto_news.db"
+
+# Collection timing settings
+update_interval_seconds: 300  # For scheduled mode: check every 5 minutes
+lookback_days: 14             # Keep 7 days of articles in memory buffer
+buffer_max_articles: 10000   # Maximum articles in memory buffer
+
+# HTTP request settings
+batch_size: 100              # Process articles in batches
+max_concurrent_requests: 5   # Maximum concurrent HTTP requests
+request_timeout_seconds: 20  # HTTP request timeout (increased for reliability)
+
+# Content filtering settings
+min_content_length: 50       # Minimum article content length (reduced for better coverage)
+max_content_length: 50000    # Maximum article content length
+
+# Crypto-related keywords for relevance filtering
+crypto_keywords:
+  # Major cryptocurrencies (Top 20 by market cap)
+  - "bitcoin"
+  - "btc"
+  - "ethereum"
+  - "eth"
+  - "tether"
+  - "usdt"
+  - "binance"
+  - "bnb"
+  - "solana"
+  - "sol"
+  - "xrp"
+  - "ripple"
+  - "usdc"
+  - "cardano"
+  - "ada"
+  - "dogecoin"
+  - "doge"
+  - "avalanche"
+  - "avax"
+  - "tron"
+  - "trx"
+  - "chainlink"
+  - "link"
+  - "polkadot"
+  - "dot"
+  - "polygon"
+  - "matic"
+  - "litecoin"
+  - "ltc"
+  - "shiba"
+  - "shib"
+  - "cosmos"
+  - "atom"
+  - "near"
+  - "ton"
+  - "tfuel"
+  - "theta"
+  - "stellar"
+  - "xlm"
+  - "monero"
+  - "xmr"
+  - "ethereum classic"
+  - "etc"
+  - "hedera"
+  - "hbar"
+  - "filecoin"
+  - "fil"
+  - "vechain"
+  - "vet"
+  - "aptos"
+  - "apt"
+  - "arbitrum"
+  - "arb"
+  - "optimism"
+  - "op"
+  
+  # General crypto terms
+  - "crypto"
+  - "cryptocurrency"
+  - "digital asset"
+  - "digital currency"
+  - "virtual currency"
+  - "blockchain"
+  - "distributed ledger"
+  - "defi"
+  - "decentralized finance"
+  - "cefi"
+  - "centralized finance"
+  - "nft"
+  - "non-fungible token"
+  - "altcoin"
+  - "memecoin"
+  - "stablecoin"
+  - "cbdc"
+  - "web3"
+  - "metaverse"
+  - "dao"
+  
+  # Trading and market terms
+  - "trading"
+  - "exchange"
+  - "dex"
+  - "cex"
+  - "coinbase"
+  - "binance"
+  - "kraken"
+  - "bybit"
+  - "okx"
+  - "huobi"
+  - "kucoin"
+  - "uniswap"
+  - "pancakeswap"
+  - "sushiswap"
+  - "1inch"
+  - "curve"
+  - "aave"
+  - "compound"
+  - "makerdao"
+  - "liquidity"
+  - "yield farming"
+  - "liquidity mining"
+  - "staking"
+  - "delegated staking"
+  - "mining"
+  - "proof of stake"
+  - "proof of work"
+  - "consensus"
+  - "validator"
+  - "node"
+  - "hash rate"
+  - "difficulty"
+  
+  # Infrastructure and technology
+  - "wallet"
+  - "cold wallet"
+  - "hot wallet"
+  - "metamask"
+  - "ledger"
+  - "trezor"
+  - "hardware wallet"
+  - "smart contract"
+  - "dapp"
+  - "protocol"
+  - "layer 1"
+  - "layer 2"
+  - "rollup"
+  - "sidechain"
+  - "bridge"
+  - "cross-chain"
+  - "interoperability"
+  - "scaling"
+  - "sharding"
+  - "fork"
+  - "upgrade"
+  - "governance"
+  - "tokenomics"
+  
+  # Regulatory and institutional
+  - "regulation"
+  - "regulatory"
+  - "sec"
+  - "securities and exchange commission"
+  - "cftc"
+  - "commodity futures trading commission"
+  - "finra"
+  - "occ"
+  - "treasury"
+  - "fed"
+  - "federal reserve"
+  - "etf"
+  - "exchange-traded fund"
+  - "institutional"
+  - "custody"
+  - "custodial"
+  - "compliance"
+  - "kyc"
+  - "know your customer"
+  - "aml"
+  - "anti-money laundering"
+  - "fatf"
+  - "mifid"
+  - "gdpr"
+  - "tax"
+  - "taxation"
+  - "irs"
+
+# News sources configuration (organized by priority tiers)
+sources:
+  # TIER 1: Premium sources (highest priority, most reliable)
+  - name: "CoinDesk"
+    base_url: "https://www.coindesk.com"
+    rss_url: "https://www.coindesk.com/arc/outboundfeeds/rss/"
+    archive_url_pattern: "https://www.coindesk.com/{year}/{month:02d}/{day:02d}/"
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 1
+    selectors:
+      title: "h1.headline, h1"
+      content: ".entry-content, article, .post-content"
+      timestamp: "time, .timestamp, .date"
+      author: ".author, .byline"
+
+  - name: "CoinTelegraph"
+    base_url: "https://cointelegraph.com"
+    rss_url: "https://cointelegraph.com/rss"
+    archive_url_pattern: ""
+    rate_limit_seconds: 1.5
+    enabled: true
+    priority: 1
+    selectors:
+      title: "h1, .post-title"
+      content: ".post-content, article"
+      timestamp: "time, .post-date"
+      author: ".author-name"
+
+  - name: "TheBlock"
+    base_url: "https://www.theblock.co"
+    rss_url: "https://www.theblock.co/rss.xml"
+    archive_url_pattern: ""
+    rate_limit_seconds: 2.0
+    enabled: true
+    priority: 1
+    selectors: {}
+
+  - name: "Decrypt"
+    base_url: "https://decrypt.co"
+    rss_url: "https://decrypt.co/feed"
+    archive_url_pattern: ""
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 1
+    selectors: {}
+
+  # TIER 2: Quality sources (good reliability, secondary priority)
+  - name: "CryptoNews"
+    base_url: "https://cryptonews.com"
+    rss_url: "https://cryptonews.com/news/feed/"
+    archive_url_pattern: ""
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 2
+    selectors: {}
+
+  - name: "CryptoSlate"
+    base_url: "https://cryptoslate.com"
+    rss_url: "https://cryptoslate.com/feed/"
+    archive_url_pattern: ""
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 2
+    selectors: {}
+
+  - name: "BeInCrypto"
+    base_url: "https://beincrypto.com"
+    rss_url: "https://beincrypto.com/feed/"
+    archive_url_pattern: ""
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 2
+    selectors: {}
+
+  - name: "NewsBTC"
+    base_url: "https://www.newsbtc.com"
+    rss_url: "https://www.newsbtc.com/feed/"
+    archive_url_pattern: ""
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 2
+    selectors: {}
+
+  - name: "Bitcoinist"
+    base_url: "https://bitcoinist.com"
+    rss_url: "https://bitcoinist.com/feed/"
+    archive_url_pattern: ""
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 2
+    selectors: {}
+
+  - name: "Bitcoin.com"
+    base_url: "https://news.bitcoin.com"
+    rss_url: "https://news.bitcoin.com/feed/"
+    archive_url_pattern: ""
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 2
+    selectors: {}
+
+  - name: "CryptoPotato"
+    base_url: "https://cryptopotato.com"
+    rss_url: "https://cryptopotato.com/feed/"
+    archive_url_pattern: ""
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 2
+    selectors: {}
+
+  - name: "AMBCrypto"
+    base_url: "https://ambcrypto.com"
+    rss_url: "https://ambcrypto.com/feed/"
+    archive_url_pattern: ""
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 2
+    selectors: {}
+
+  - name: "DailyHodl"
+    base_url: "https://dailyhodl.com"
+    rss_url: "https://dailyhodl.com/feed/"
+    archive_url_pattern: ""
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 2
+    selectors: {}
+
+  # TIER 3: Additional sources (lower priority, can be disabled if needed)
+  - name: "CoinJournal"
+    base_url: "https://coinjournal.net"
+    rss_url: "https://coinjournal.net/feed/"
+    archive_url_pattern: ""
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 3
+    selectors: {}
+
+  - name: "CryptoDaily"
+    base_url: "https://cryptodaily.co.uk"
+    rss_url: "https://cryptodaily.co.uk/feed"
+    archive_url_pattern: ""
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 3
+    selectors: {}
+
+  # NEW QUALITY SOURCES (adding more comprehensive coverage)
+  - name: "CoinMarketCap"
+    base_url: "https://coinmarketcap.com"
+    rss_url: "https://coinmarketcap.com/headlines/rss/"
+    archive_url_pattern: ""
+    rate_limit_seconds: 1.5
+    enabled: true
+    priority: 1
+    selectors: {}
+
+  - name: "CoinGecko"
+    base_url: "https://www.coingecko.com"
+    rss_url: "https://www.coingecko.com/en/news/rss"
+    archive_url_pattern: ""
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 2
+    selectors: {}
+
+  - name: "Blockworks"
+    base_url: "https://blockworks.co"
+    rss_url: "https://blockworks.co/rss.xml"
+    archive_url_pattern: ""
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 1
+    selectors: {}
+
+  - name: "DeFiPulse"
+    base_url: "https://www.defipulse.com"
+    rss_url: "https://www.defipulse.com/blog/rss.xml"
+    archive_url_pattern: ""
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 2
+    selectors: {}
+
+  - name: "Messari"
+    base_url: "https://messari.io"
+    rss_url: "https://messari.io/rss"
+    archive_url_pattern: ""
+    rate_limit_seconds: 2.0
+    enabled: true
+    priority: 1
+    selectors: {}
+
+  - name: "CryptoCompare"
+    base_url: "https://www.cryptocompare.com"
+    rss_url: "https://www.cryptocompare.com/api/news/latest?lang=EN"
+    archive_url_pattern: ""
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 2
+    selectors: {}
+
+  - name: "Finbold"
+    base_url: "https://finbold.com"
+    rss_url: "https://finbold.com/feed/"
+    archive_url_pattern: ""
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 3
+    selectors: {}
+
+  - name: "U.Today"
+    base_url: "https://u.today"
+    rss_url: "https://u.today/rss"
+    archive_url_pattern: ""
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 3
+    selectors: {}
+
+  - name: "CoinEdition"
+    base_url: "https://coinedition.com"
+    rss_url: "https://coinedition.com/feed/"
+    archive_url_pattern: ""
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 3
+    selectors: {}
+
+  - name: "Invezz"
+    base_url: "https://invezz.com"
+    rss_url: "https://invezz.com/news/crypto/feed/"
+    archive_url_pattern: ""
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 3
+    selectors: {}
+
+  # MAINSTREAM FINANCE WITH CRYPTO COVERAGE
+  - name: "Bloomberg-Crypto"
+    base_url: "https://www.bloomberg.com"
+    rss_url: "https://feeds.bloomberg.com/crypto/news.rss"
+    archive_url_pattern: ""
+    rate_limit_seconds: 2.0
+    enabled: true
+    priority: 1
+    selectors: {}
+
+  - name: "Reuters-Crypto"
+    base_url: "https://www.reuters.com"
+    rss_url: "https://www.reuters.com/markets/currencies/rss"
+    archive_url_pattern: ""
+    rate_limit_seconds: 2.0
+    enabled: true
+    priority: 1
+    selectors: {}
+
+  - name: "WSJ-Crypto"
+    base_url: "https://www.wsj.com"
+    rss_url: "https://feeds.wsj.com/public/resources/documents/WSJcom-MARKETS.xml"
+    archive_url_pattern: ""
+    rate_limit_seconds: 2.0
+    enabled: false  # May require subscription
+    priority: 1
+    selectors: {}
+
+  # REGIONAL SOURCES (for global coverage)
+  - name: "CoinTurk"
+    base_url: "https://en.coin-turk.com"
+    rss_url: "https://en.coin-turk.com/feed/"
+    archive_url_pattern: ""
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 3
+    selectors: {}
+
+  - name: "Cryptopolitan"
+    base_url: "https://www.cryptopolitan.com"
+    rss_url: "https://www.cryptopolitan.com/feed/"
+    archive_url_pattern: ""
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 3
+    selectors: {}
+
+  # SPECIALIZED SOURCES
+  - name: "DeFiLlama-Blog"
+    base_url: "https://blog.defillama.com"
+    rss_url: "https://blog.defillama.com/rss.xml"
+    archive_url_pattern: ""
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 2
+    selectors: {}
+
+  - name: "NFTGo"
+    base_url: "https://nftgo.io"
+    rss_url: "https://nftgo.io/news/rss"
+    archive_url_pattern: ""
+    rate_limit_seconds: 1.0
+    enabled: false  # NFT-specific, enable if needed
+    priority: 3
+    selectors: {}
+
+# Logging configuration
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  file_enabled: true
+  file_path: "scraper.log"
+  console_enabled: true
+
+# API settings
+apis:
+  cryptocompare:
+    enabled: true
+    base_url: "https://min-api.cryptocompare.com/data/v2/news/"
+    rate_limit_seconds: 1.0
+    max_articles_per_request: 50
+  
+  reddit:
+    enabled: true
+    subreddits:
+      - "CryptoCurrency"
+      - "Bitcoin"
+      - "ethereum"
+      - "CryptoMarkets"
+      - "btc"
+      - "ethtrader"
+    rate_limit_seconds: 2.0
+    max_posts_per_subreddit: 50
+
+# Export settings
+export:
+  default_format: "csv"
+  include_content: true
+  max_content_length_export: 1000  # Truncate content in exports
+  date_format: "ISO"
+
+# Quality control settings
+quality_control:
+  duplicate_detection: true
+  content_similarity_threshold: 0.8  # For near-duplicate detection
+  minimum_word_count: 10
+  blacklisted_domains: []  # Add domains to ignore
+  required_keywords_count: 1  # Minimum crypto keyword matches
