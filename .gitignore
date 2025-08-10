@@ -1,0 +1,5 @@
+crypto_scraper_config.yaml
+crypto_news.db
+crypto_news.db.bak
+scrapper.log
+__pycache__
