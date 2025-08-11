@@ -1,5 +1,4 @@
 crypto_scraper_config.yaml
-crypto_news.db
-crypto_news.db.bak
+crypto_news*.db*
 scrapper.log
 __pycache__
