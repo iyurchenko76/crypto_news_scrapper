@@ -58,8 +58,8 @@ class BaseAsyncScraper(ABC):
         return keyword_set
 
     @abstractmethod
-    async def scrape_articles(self, max_articles: int = 100) -> List[NewsArticle]:
-        """Scrape articles from this source"""
+    async def scrape_articles(self, max_articles: int = 100, hours_back: int = None) -> List[NewsArticle]:
+        """Scrape articles from this source with optional time range"""
         pass
 
     async def validate_source(self) -> bool:
@@ -172,8 +172,8 @@ class RSSAsyncScraper(BaseAsyncScraper):
         if not self.rss_url:
             raise ValueError(f"RSS URL required for {self.name}")
 
-    async def scrape_articles(self, max_articles: int = 100) -> List[NewsArticle]:
-        """Scrape articles from RSS feed"""
+    async def scrape_articles(self, max_articles: int = 100, hours_back: int = None) -> List[NewsArticle]:
+        """Scrape articles from RSS feed with optional time filtering"""
         if not self.rss_url:
             return []
 
