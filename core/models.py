@@ -12,9 +12,6 @@ class SourceType(Enum):
     WEB = "web"
     SOCIAL = "social"
     REDDIT = "reddit"
-    GOOGLE_NEWS_RSS = "google_news_rss"
-    GOOGLE_NEWS_WEB = "google_news_web"
-    GOOGLE_NEWS_COMBINED = "google_news_combined"
 
 @dataclass
 class NewsArticle:

@@ -1,4 +1,4 @@
-# File: src/scrapers/factory.py (UPDATED)
+# File: src/scrapers/factory.py
 """Scraper factory for creating appropriate scraper instances"""
 from typing import Dict, Any, List
 
@@ -6,11 +6,6 @@ from scrapers.api_scraper import CryptoCompareAPIScraper
 from scrapers.base import RSSAsyncScraper
 from scrapers.reddit_scraper import RedditScraper
 from scrapers.web_scraper import WebArchiveScraper
-from scrapers.google_news_scraper import (
-    GoogleNewsRSSScaper,
-    GoogleNewsWebScraper,
-    GoogleNewsCombinedScraper
-)
 from utils.http_client import AsyncHTTPClient
 from utils.logger import get_logger
 
@@ -29,16 +24,7 @@ class ScraperFactory:
         source_type = source_config.get('source_type', 'rss')
 
         try:
-            # Google News scrapers
-            if source_type == 'google_news_rss':
-                return GoogleNewsRSSScaper(source_config, self.http_client, self.global_config)
-            elif source_type == 'google_news_web':
-                return GoogleNewsWebScraper(source_config, self.http_client, self.global_config)
-            elif source_type == 'google_news_combined':
-                return GoogleNewsCombinedScraper(source_config, self.http_client, self.global_config)
-
-            # Existing scrapers
-            elif source_type == 'rss' or source_config.get('rss_url'):
+            if source_type == 'rss' or source_config.get('rss_url'):
                 return RSSAsyncScraper(source_config, self.http_client, self.global_config)
             elif source_type == 'api':
                 # Determine which API scraper to use
@@ -62,12 +48,4 @@ class ScraperFactory:
     @classmethod
     def get_available_scrapers(cls) -> List[str]:
         """Get list of available scraper types"""
-        return [
-            'rss',
-            'api_cryptocompare',
-            'web',
-            'reddit',
-            'google_news_rss',
-            'google_news_web',
-            'google_news_combined'
-        ]
+        return ['rss', 'api_cryptocompare']
