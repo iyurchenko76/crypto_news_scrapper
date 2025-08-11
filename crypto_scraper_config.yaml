@@ -394,7 +394,7 @@ sources:
     base_url: "https://www.bloomberg.com"
     rss_url: "https://feeds.bloomberg.com/crypto/news.rss"
     rate_limit_seconds: 2.0
-    enabled: false  # Often 403
+    enabled: true  # Often 403
     priority: 1
 
   - name: "Reuters-Crypto"
@@ -664,6 +664,228 @@ sources:
     enabled: false
     priority: 2
 
+  # IMMEDIATE RSS ADDITIONS (using existing "rss" source_type)
+  - name: "CoinGape"
+    base_url: "https://coingape.com"
+    rss_url: "https://coingape.com/feed/"
+    source_type: "rss"  # ✅ Already implemented
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 3
+
+  - name: "ZyCrypto"
+    base_url: "https://zycrypto.com"
+    rss_url: "https://zycrypto.com/feed/"
+    source_type: "rss"  # ✅ Already implemented
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 3
+
+  - name: "CryptoGlobe"
+    base_url: "https://www.cryptoglobe.com"
+    rss_url: "https://www.cryptoglobe.com/latest/feed/"
+    source_type: "rss"  # ✅ Already implemented
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 3
+
+  - name: "Coinspeaker"
+    base_url: "https://www.coinspeaker.com"
+    rss_url: "https://www.coinspeaker.com/feed/"
+    source_type: "rss"  # ✅ Already implemented
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 3
+
+  - name: "CryptoBasic"
+    base_url: "https://cryptobasic.com"
+    rss_url: "https://cryptobasic.com/feed/"
+    source_type: "rss"  # ✅ Already implemented
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 3
+
+  - name: "BitcoinNews"
+    base_url: "https://bitcoinnews.com"
+    rss_url: "https://bitcoinnews.com/feed/"
+    source_type: "rss"  # ✅ Already implemented
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 3
+
+  - name: "CoinQuora"
+    base_url: "https://coinquora.com"
+    rss_url: "https://coinquora.com/feed/"
+    source_type: "rss"  # ✅ Already implemented
+    rate_limit_seconds: 1.0
+    enabled: false
+    priority: 3
+
+  - name: "BitcoinEthereumNews"
+    base_url: "https://bitcoinethereumnews.com"
+    rss_url: "https://bitcoinethereumnews.com/feed/"
+    source_type: "rss"  # ✅ Already implemented
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 3
+
+  # IMMEDIATE REDDIT ADDITIONS (using existing "reddit" source_type)
+  - name: "Reddit-DeFi"
+    base_url: "https://www.reddit.com"
+    source_type: "reddit"  # ✅ Already implemented
+    subreddit: "defi"
+    rate_limit_seconds: 3.0
+    enabled: true
+    priority: 3
+    max_posts: 20
+
+  - name: "Reddit-Altcoin"
+    base_url: "https://www.reddit.com"
+    source_type: "reddit"  # ✅ Already implemented
+    subreddit: "altcoin"
+    rate_limit_seconds: 3.0
+    enabled: true
+    priority: 3
+    max_posts: 20
+
+  - name: "Reddit-CryptoTechnology"
+    base_url: "https://www.reddit.com"
+    source_type: "reddit"  # ✅ Already implemented
+    subreddit: "CryptoTechnology"
+    rate_limit_seconds: 3.0
+    enabled: true
+    priority: 3
+    max_posts: 15
+
+  - name: "Reddit-CryptoCurrencies"
+    base_url: "https://www.reddit.com"
+    source_type: "reddit"  # ✅ Already implemented
+    subreddit: "CryptoCurrencies"
+    rate_limit_seconds: 3.0
+    enabled: true
+    priority: 3
+    max_posts: 15
+
+  - name: "Reddit-SatoshiStreetBets"
+    base_url: "https://www.reddit.com"
+    source_type: "reddit"  # ✅ Already implemented
+    subreddit: "SatoshiStreetBets"
+    rate_limit_seconds: 3.0
+    enabled: true
+    priority: 3
+    max_posts: 15
+
+  - name: "Reddit-CryptoMoonShots"
+    base_url: "https://www.reddit.com"
+    source_type: "reddit"  # ✅ Already implemented
+    subreddit: "CryptoMoonShots"
+    rate_limit_seconds: 3.0
+    enabled: false  # Can be noisy, enable if wanted
+    priority: 3
+    max_posts: 10
+
+  - name: "Reddit-NFT"
+    base_url: "https://www.reddit.com"
+    source_type: "reddit"  # ✅ Already implemented
+    subreddit: "NFT"
+    rate_limit_seconds: 3.0
+    enabled: true
+    priority: 3
+    max_posts: 10
+
+  - name: "Reddit-Chainlink"
+    base_url: "https://www.reddit.com"
+    source_type: "reddit"  # ✅ Already implemented
+    subreddit: "Chainlink"
+    rate_limit_seconds: 3.0
+    enabled: false  # Specific to one project
+    priority: 3
+    max_posts: 10
+
+  - name: "Reddit-Cardano"
+    base_url: "https://www.reddit.com"
+    source_type: "reddit"  # ✅ Already implemented
+    subreddit: "cardano"
+    rate_limit_seconds: 3.0
+    enabled: false  # Specific to one project
+    priority: 3
+    max_posts: 10
+
+  - name: "Reddit-Solana"
+    base_url: "https://www.reddit.com"
+    source_type: "reddit"  # ✅ Already implemented
+    subreddit: "solana"
+    rate_limit_seconds: 3.0
+    enabled: false  # Specific to one project
+    priority: 3
+    max_posts: 10
+
+  # INTERNATIONAL/REGIONAL SOURCES (using existing "rss" source_type)
+  - name: "CoinTurk-English"
+    base_url: "https://en.coin-turk.com"
+    rss_url: "https://en.coin-turk.com/feed/"
+    source_type: "rss"  # ✅ Already implemented
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 3
+
+  - name: "CoinDesk-Japan"
+    base_url: "https://www.coindeskjapan.com"
+    rss_url: "https://www.coindeskjapan.com/feed/"
+    source_type: "rss"  # ✅ Already implemented
+    rate_limit_seconds: 1.0
+    enabled: false  # Japanese content
+    priority: 3
+
+  # TECHNICAL/DEVELOPER FOCUSED (using existing "rss" source_type)
+  - name: "Ethereum-Blog"
+    base_url: "https://blog.ethereum.org"
+    rss_url: "https://blog.ethereum.org/feed.xml"
+    source_type: "rss"  # ✅ Already implemented
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 2
+
+  - name: "ConsenSys-Blog"
+    base_url: "https://consensys.net"
+    rss_url: "https://consensys.net/blog/feed/"
+    source_type: "rss"  # ✅ Already implemented
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 2
+
+  - name: "Chainlink-Blog"
+    base_url: "https://blog.chain.link"
+    rss_url: "https://blog.chain.link/rss/"
+    source_type: "rss"  # ✅ Already implemented
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 2
+
+  - name: "Polygon-Blog"
+    base_url: "https://blog.polygon.technology"
+    rss_url: "https://blog.polygon.technology/feed/"
+    source_type: "rss"  # ✅ Already implemented
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 2
+
+  - name: "Solana-Blog"
+    base_url: "https://solana.com"
+    rss_url: "https://solana.com/news/rss.xml"
+    source_type: "rss"  # ✅ Already implemented
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 2
+
+  - name: "Avalanche-Blog"
+    base_url: "https://medium.com/avalancheavax"
+    rss_url: "https://medium.com/feed/avalancheavax"
+    source_type: "rss"  # ✅ Already implemented
+    rate_limit_seconds: 1.0
+    enabled: true
+    priority: 2
+
 # API settings (from old config)
 apis:
   cryptocompare:
@@ -681,6 +903,22 @@ apis:
       - "CryptoMarkets"
       - "btc"
       - "ethtrader"
+      - "defi"
+      - "altcoin"
+      - "CryptoTechnology"
+      - "CryptoCurrencies"
+      - "SatoshiStreetBets"
+      - "NFT"
+      - "Chainlink"
+      - "cardano"
+      - "solana"
+      - "CryptoMoonShots"
+      - "CryptoNews"
+      - "Crypto"
+      - "CryptoCurrencyNews"
+      - "CryptoCurrencyExchanges"
+      - "tfuel"
+      - "ton"
     rate_limit_seconds: 2.0
     max_posts_per_subreddit: 50
 
