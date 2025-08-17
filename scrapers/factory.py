@@ -14,6 +14,8 @@ from scrapers.google_news_scraper import (
 )
 from scrapers.telegram_web_scraper import TelegramWebScraper  # NEW
 from utils.http_client import AsyncHTTPClient
+from scrapers.twitter_api_scraper import TwitterAPIScraper  # NEW
+from scrapers.twitter_web_scraper import TwitterWebScraper  # NEW
 from utils.logger import get_logger
 
 logger = get_logger(__name__)
@@ -39,11 +41,16 @@ class ScraperFactory:
             elif source_type == 'google_news_combined':
                 return GoogleNewsCombinedScraper(source_config, self.http_client, self.global_config)
 
-            # Telegram scraper (NEW)
             elif source_type == 'telegram_web':
                 return TelegramWebScraper(source_config, self.http_client, self.global_config)
             elif source_type == 'telegram_api':
                 return TelegramAPIScraper(source_config, self.http_client, self.global_config)
+            # Twitter/X scrapers (NEW)
+            elif source_type == 'twitter_api':
+                return TwitterAPIScraper(source_config, self.http_client, self.global_config)
+            elif source_type == 'twitter_web':
+                return TwitterWebScraper(source_config, self.http_client, self.global_config)
+
 
             # Existing scrapers
             elif source_type == 'rss' or source_config.get('rss_url'):
@@ -78,5 +85,8 @@ class ScraperFactory:
             'google_news_rss',
             'google_news_web',
             'google_news_combined',
-            'telegram'  # NEW
+            'telegram',
+            'twitter_api',  # NEW
+            'twitter_web'   # NEW
+
         ]

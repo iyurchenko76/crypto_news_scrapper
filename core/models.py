@@ -17,6 +17,8 @@ class SourceType(Enum):
     GOOGLE_NEWS_COMBINED = "google_news_combined"
     TELEGRAM_WEB = "telegram_web"
     TELEGRAM_API = "telegram_api"
+    TWITTER_API = "twitter_api"
+    TWITTER_WEB = "twitter_web"
 
 @dataclass
 class NewsArticle:

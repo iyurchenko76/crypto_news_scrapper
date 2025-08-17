@@ -59,6 +59,15 @@ class ConfigManager:
             self._config['telegram_api_id'] = os.getenv('TELEGRAM_API_ID', '')
             self._config['telegram_api_hash'] = os.getenv('TELEGRAM_API_HASH', '')
             self._config['telegram_phone'] = os.getenv('TELEGRAM_PHONE', '')
+            if self._config['telegram_api_id'] and self._config['telegram_api_hash'] and self._config['telegram_phone']:
+                logger.info("Telegram credentials found in environment variables")
+            else:
+                logger.warning("Telegram credentials not found in environment variables")
+            self._config['twitter_bearer_token'] = os.getenv('TWITTER_BEARER_TOKEN', '')
+            if self._config['twitter_bearer_token']:
+                logger.info("Twitter bearer token found in environment variables")
+            else:
+                logger.warning("Twitter bearer token not found in environment variables")
 
             logger.info(f"Configuration loaded successfully from {self.config_path}")
             return self._config

@@ -187,915 +187,941 @@ crypto_keywords:
   - "irs"
 
 sources:
-  # TIER 1: Premium sources with enhanced web scraping
-  - name: "CoinDesk"
-    base_url: "https://www.coindesk.com"
-    rss_url: "https://www.coindesk.com/arc/outboundfeeds/rss/"
-    source_type: "web"  # Enhanced web scraping
-    enable_web_archive: true
-    max_archive_pages: 20
-    archive_url_pattern: "https://www.coindesk.com/{year}/{month:02d}/{day:02d}/"
-    rate_limit_seconds: 2.0
-    enabled: true
-    priority: 1
-    selectors:
-      title: "h1.headline, h1"
-      content: ".entry-content, article, .post-content"
-      timestamp: "time, .timestamp, .date"
-      author: ".author, .byline"
-
-  - name: "CoinTelegraph"
-    base_url: "https://cointelegraph.com"
-    rss_url: "https://cointelegraph.com/rss"
-    source_type: "web"  # Enhanced web scraping
-    enable_web_archive: true
-    max_archive_pages: 15
-    rate_limit_seconds: 2.0
-    enabled: true
-    priority: 1
-    selectors:
-      title: "h1, .post-title"
-      content: ".post-content, article"
-      timestamp: "time, .post-date"
-      author: ".author-name"
-
-  - name: "TheBlock"
-    base_url: "https://www.theblock.co"
-    rss_url: "https://www.theblock.co/rss.xml"
-    rate_limit_seconds: 2.0
-    enabled: true
-    priority: 1
-
-  - name: "Decrypt"
-    base_url: "https://decrypt.co"
-    rss_url: "https://decrypt.co/feed"
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 1
-
-  - name: "Blockworks"
-    base_url: "https://blockworks.co"
-    rss_url: "https://blockworks.co/feed/"  # Fixed URL from old config
-    rate_limit_seconds: 1.5
-    enabled: true
-    priority: 1
-
-  - name: "Messari"
-    base_url: "https://messari.io"
-    rss_url: "https://messari.io/rss"
-    rate_limit_seconds: 2.0
-    enabled: true
-    priority: 1
-
-  # TIER 2: Quality sources
-  - name: "CryptoNews"
-    base_url: "https://cryptonews.com"
-    rss_url: "https://cryptonews.com/news/feed/"
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 2
-
-  - name: "CryptoSlate"
-    base_url: "https://cryptoslate.com"
-    rss_url: "https://cryptoslate.com/feed/"
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 2
-
-  - name: "BeInCrypto"
-    base_url: "https://beincrypto.com"
-    rss_url: "https://beincrypto.com/feed/"
-    rate_limit_seconds: 1.0
-    enabled: false  # Often blocks requests
-    priority: 2
-
-  - name: "NewsBTC"
-    base_url: "https://www.newsbtc.com"
-    rss_url: "https://www.newsbtc.com/feed/"
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 2
-
-  - name: "Bitcoinist"
-    base_url: "https://bitcoinist.com"
-    rss_url: "https://bitcoinist.com/feed/"
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 2
-
-  - name: "Bitcoin.com"
-    base_url: "https://news.bitcoin.com"
-    rss_url: "https://news.bitcoin.com/feed/"
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 2
-
-  - name: "CryptoPotato"
-    base_url: "https://cryptopotato.com"
-    rss_url: "https://cryptopotato.com/feed/"
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 2
-
-  - name: "AMBCrypto"
-    base_url: "https://ambcrypto.com"
-    rss_url: "https://ambcrypto.com/feed/"
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 2
-
-  - name: "DailyHodl"
-    base_url: "https://dailyhodl.com"
-    rss_url: "https://dailyhodl.com/feed/"
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 2
-
-  - name: "CoinGecko"
-    base_url: "https://www.coingecko.com"
-    rss_url: "https://blog.coingecko.com/feed/"  # Fixed URL
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 2
-
-  - name: "DeFiPulse"
-    base_url: "https://www.defipulse.com"
-    rss_url: "https://www.defipulse.com/blog/rss.xml"
-    rate_limit_seconds: 1.0
-    enabled: false  # Often 404
-    priority: 2
-
-  - name: "DeFiLlama-Blog"
-    base_url: "https://blog.defillama.com"
-    rss_url: "https://blog.defillama.com/rss.xml"
-    rate_limit_seconds: 1.0
-    enabled: false  # DNS issues
-    priority: 2
-
-  # TIER 3: Additional sources
-  - name: "CoinJournal"
-    base_url: "https://coinjournal.net"
-    rss_url: "https://coinjournal.net/feed/"
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 3
-
-  - name: "CryptoDaily"
-    base_url: "https://cryptodaily.co.uk"
-    rss_url: "https://cryptodaily.co.uk/feed"
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 3
-
-  - name: "Finbold"
-    base_url: "https://finbold.com"
-    rss_url: "https://finbold.com/feed/"
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 3
-
-  - name: "U.Today"
-    base_url: "https://u.today"
-    rss_url: "https://u.today/rss"
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 3
-
-  - name: "CoinEdition"
-    base_url: "https://coinedition.com"
-    rss_url: "https://coinedition.com/feed/"
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 3
-
-  - name: "Invezz"
-    base_url: "https://invezz.com"
-    rss_url: "https://invezz.com/news/crypto/feed/"
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 3
-
-  - name: "CoinTurk"
-    base_url: "https://en.coin-turk.com"
-    rss_url: "https://en.coin-turk.com/feed/"
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 3
-
-  - name: "Cryptopolitan"
-    base_url: "https://www.cryptopolitan.com"
-    rss_url: "https://www.cryptopolitan.com/feed/"
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 3
-
-  # MAINSTREAM FINANCE (often have access issues)
-  - name: "Bloomberg-Crypto"
-    base_url: "https://www.bloomberg.com"
-    rss_url: "https://feeds.bloomberg.com/crypto/news.rss"
-    rate_limit_seconds: 2.0
-    enabled: false  # Often 403
-    priority: 1
-
-  - name: "Reuters-Crypto"
-    base_url: "https://www.reuters.com"
-    rss_url: "https://www.reuters.com/markets/currencies/rss"
-    rate_limit_seconds: 2.0
-    enabled: false  # Often 401
-    priority: 1
-
-  - name: "WSJ-Crypto"
-    base_url: "https://www.wsj.com"
-    rss_url: "https://feeds.wsj.com/public/resources/documents/WSJcom-MARKETS.xml"
-    rate_limit_seconds: 2.0
-    enabled: false  # Requires subscription
-    priority: 1
-
-  # PROBLEMATIC SOURCES (from old config)
-  - name: "CoinMarketCap"
-    base_url: "https://coinmarketcap.com"
-    rss_url: "https://coinmarketcap.com/headlines/rss/"
-    rate_limit_seconds: 1.5
-    enabled: false  # Often 404
-    priority: 1
-
-  - name: "NFTGo"
-    base_url: "https://nftgo.io"
-    rss_url: "https://nftgo.io/news/rss"
-    rate_limit_seconds: 1.0
-    enabled: false  # NFT-specific
-    priority: 3
-
-  # API SOURCES
-  - name: "CryptoCompare"
-    base_url: "https://www.cryptocompare.com"
-    source_type: "api"
-    rate_limit_seconds: 2.0
-    enabled: true
-    priority: 1
-
-  # REDDIT SOURCES (NEW!)
-  - name: "Reddit-CryptoCurrency"
-    base_url: "https://www.reddit.com"
-    source_type: "reddit"
-    subreddit: "CryptoCurrency"
-    rate_limit_seconds: 3.0
-    enabled: true
-    priority: 2
-    max_posts: 50
-
-  - name: "Reddit-Bitcoin"
-    base_url: "https://www.reddit.com"
-    source_type: "reddit"
-    subreddit: "Bitcoin"
-    rate_limit_seconds: 3.0
-    enabled: true
-    priority: 2
-    max_posts: 50
-
-  - name: "Reddit-Ethereum"
-    base_url: "https://www.reddit.com"
-    source_type: "reddit"
-    subreddit: "ethereum"
-    rate_limit_seconds: 3.0
-    enabled: true
-    priority: 2
-    max_posts: 30
-
-  - name: "Reddit-CryptoMarkets"
-    base_url: "https://www.reddit.com"
-    source_type: "reddit"
-    subreddit: "CryptoMarkets"
-    rate_limit_seconds: 3.0
-    enabled: true
-    priority: 3
-    max_posts: 30
-
-  - name: "Reddit-BTC"
-    base_url: "https://www.reddit.com"
-    source_type: "reddit"
-    subreddit: "btc"
-    rate_limit_seconds: 3.0
-    enabled: true
-    priority: 3
-    max_posts: 20
-
-  - name: "Reddit-EthTrader"
-    base_url: "https://www.reddit.com"
-    source_type: "reddit"
-    subreddit: "ethtrader"
-    rate_limit_seconds: 3.0
-    enabled: true
-    priority: 3
-    max_posts: 20
-
-# GOOGLE NEWS SOURCES (ENHANCED WITH DYNAMIC TIME RANGES)
-
-  # Primary RSS scraper with dynamic date range enhancement
-  - name: "Google-News-RSS"
-    base_url: "https://news.google.com"
-    source_type: "google_news_rss"
-    language: "en"
-    country: "US"
-    search_queries:
-      - "cryptocurrency"
-      - "bitcoin news"
-      - "ethereum news"
-      - "crypto market"
-      - "blockchain news"
-      - "defi news"
-      - "nft news"
-      - "altcoin news"
-    max_articles_per_query: 15
-    fetch_full_content: false        # Fast and reliable
-    allow_title_only: true          # Allow title + summary
-    google_news_min_content: 10     # Lower threshold for Google News
-    use_date_enhancement: true      # Add dynamic date ranges to queries
-    default_days_back: 7            # Default when no hours_back provided
-    rate_limit_seconds: 2.0
-    enabled: true
-    priority: 1
-
-# Combined scraper with improved fallbacks and dynamic ranges
-  - name: "Google-News-Combined"
-    base_url: "https://news.google.com"
-    source_type: "google_news_combined"
-    language: "en"
-    country: "US"
-    search_queries:
-      - "cryptocurrency"
-      - "bitcoin"
-      - "ethereum"
-      - "crypto news"
-      - "blockchain"
-      - "defi"
-    max_articles_per_query: 15
-    use_web_backup: false           # Disable web backup (causes issues)
-    rss_ratio: 1.0                  # 100% RSS for reliability
-    fetch_full_content: false
-    allow_title_only: true
-    google_news_min_content: 10
-    use_date_enhancement: true      # Enhanced RSS queries
-    default_days_back: 7            # Default time range
-    rate_limit_seconds: 2.5
-    enabled: true
-    priority: 1
-
-  # Short-term focused scraper (for recent news)
-  - name: "Google-News-Recent"
-    base_url: "https://news.google.com"
-    source_type: "google_news_rss"
-    language: "en"
-    country: "US"
-    search_queries:
-      - "cryptocurrency breaking"
-      - "bitcoin news today"
-      - "ethereum latest"
-      - "crypto market update"
-    max_articles_per_query: 10
-    fetch_full_content: false
-    allow_title_only: true
-    google_news_min_content: 10
-    use_date_enhancement: true
-    default_days_back: 1            # Focus on very recent news
-    rate_limit_seconds: 2.0
-    enabled: false                  # Enable for breaking news focus
-    priority: 1
-
-  # Long-term historical scraper (for backfilling)
-  - name: "Google-News-Historical"
-    base_url: "https://news.google.com"
-    source_type: "google_news_rss"
-    language: "en"
-    country: "US"
-    search_queries:
-      - "cryptocurrency"           # Broader terms for historical
-      - "bitcoin"
-      - "ethereum"
-      - "crypto regulation"
-      - "blockchain adoption"
-    max_articles_per_query: 20
-    fetch_full_content: false
-    allow_title_only: true
-    google_news_min_content: 10
-    use_date_enhancement: true
-    default_days_back: 30           # Longer default for historical
-    rate_limit_seconds: 3.0         # Slower for historical scraping
-    enabled: false                  # Enable manually for historical collection
-    priority: 2
-
-  # Web scraper - improved but still experimental
-  - name: "Google-News-Web"
-    base_url: "https://news.google.com"
-    source_type: "google_news_web"
-    language: "en"
-    country: "US"
-    search_queries:
-      - "cryptocurrency news"       # Simpler queries for web scraping
-      - "bitcoin price"
-      - "ethereum latest"
-    allow_title_only: true
-    google_news_min_content: 10
-    default_days_back: 3            # Shorter range for web scraping
-    rate_limit_seconds: 5.0         # Much slower to avoid blocks
-    enabled: false                  # Keep disabled until Google blocks are resolved
-    priority: 3
-
-  # Performance-optimized version (fastest)
-  - name: "Google-News-Fast"
-    base_url: "https://news.google.com"
-    source_type: "google_news_rss"
-    language: "en"
-    country: "US"
-    search_queries:
-      - "cryptocurrency"
-      - "bitcoin"
-      - "ethereum"
-    max_articles_per_query: 10
-    fetch_full_content: false  # Fast mode - no full content fetching
-    allow_title_only: true
-    google_news_min_content: 5   # Very low threshold
-    rate_limit_seconds: 1.0
-    enabled: false  # Enable if you want fastest possible scraping
-    priority: 1
-
-  # Full content version (slowest but most complete)
-  - name: "Google-News-Full-Content"
-    base_url: "https://news.google.com"
-    source_type: "google_news_rss"
-    language: "en"
-    country: "US"
-    search_queries:
-      - "cryptocurrency"
-      - "bitcoin news"
-      - "ethereum news"
-    max_articles_per_query: 5   # Fewer articles due to content fetching
-    fetch_full_content: true    # Fetch full article content
-    allow_title_only: false     # Require full content
-    google_news_min_content: 100  # Higher threshold for full content
-    rate_limit_seconds: 4.0     # Slower to be respectful when fetching content
-    enabled: false  # Enable if you want full article content
-    priority: 1
-
-# Alternative configuration for different countries/languages:
-# - name: "Google-News-UK"
-#   base_url: "https://news.google.com"
-#   source_type: "google_news_combined"
-#   language: "en"
-#   country: "GB"
-#   search_queries:
-#     - "cryptocurrency uk"
-#     - "bitcoin regulation uk"
-#     - "crypto tax uk"
-#   rate_limit_seconds: 2.5
-#   enabled: false
-#   priority: 2
-
-  - name: "Google-News-Global"
-    base_url: "https://news.google.com"
-    source_type: "google_news_combined"
-    language: "en"
-    country: "US"
-    search_queries:
-      - "cryptocurrency global"
-      - "bitcoin international"
-      - "crypto adoption worldwide"
-    rate_limit_seconds: 2.5
-    enabled: false
-    priority: 2
-
-  # IMMEDIATE RSS ADDITIONS (using existing "rss" source_type)
-  - name: "CoinGape"
-    base_url: "https://coingape.com"
-    rss_url: "https://coingape.com/feed/"
-    source_type: "rss"  # ✅ Already implemented
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 3
-
-  - name: "ZyCrypto"
-    base_url: "https://zycrypto.com"
-    rss_url: "https://zycrypto.com/feed/"
-    source_type: "rss"  # ✅ Already implemented
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 3
-
-  - name: "CryptoGlobe"
-    base_url: "https://www.cryptoglobe.com"
-    rss_url: "https://www.cryptoglobe.com/latest/feed/"
-    source_type: "rss"  # ✅ Already implemented
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 3
-
-  - name: "Coinspeaker"
-    base_url: "https://www.coinspeaker.com"
-    rss_url: "https://www.coinspeaker.com/feed/"
-    source_type: "rss"  # ✅ Already implemented
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 3
-
-  - name: "CryptoBasic"
-    base_url: "https://cryptobasic.com"
-    rss_url: "https://cryptobasic.com/feed/"
-    source_type: "rss"  # ✅ Already implemented
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 3
-
-  - name: "BitcoinNews"
-    base_url: "https://bitcoinnews.com"
-    rss_url: "https://bitcoinnews.com/feed/"
-    source_type: "rss"  # ✅ Already implemented
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 3
-
-  - name: "CoinQuora"
-    base_url: "https://coinquora.com"
-    rss_url: "https://coinquora.com/feed/"
-    source_type: "rss"  # ✅ Already implemented
-    rate_limit_seconds: 1.0
-    enabled: false
-    priority: 3
-
-  - name: "BitcoinEthereumNews"
-    base_url: "https://bitcoinethereumnews.com"
-    rss_url: "https://bitcoinethereumnews.com/feed/"
-    source_type: "rss"  # ✅ Already implemented
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 3
-
-  # IMMEDIATE REDDIT ADDITIONS (using existing "reddit" source_type)
-  - name: "Reddit-DeFi"
-    base_url: "https://www.reddit.com"
-    source_type: "reddit"  # ✅ Already implemented
-    subreddit: "defi"
-    rate_limit_seconds: 3.0
-    enabled: true
-    priority: 3
-    max_posts: 20
-
-  - name: "Reddit-Altcoin"
-    base_url: "https://www.reddit.com"
-    source_type: "reddit"  # ✅ Already implemented
-    subreddit: "altcoin"
-    rate_limit_seconds: 3.0
-    enabled: true
-    priority: 3
-    max_posts: 20
-
-  - name: "Reddit-CryptoTechnology"
-    base_url: "https://www.reddit.com"
-    source_type: "reddit"  # ✅ Already implemented
-    subreddit: "CryptoTechnology"
-    rate_limit_seconds: 3.0
-    enabled: true
-    priority: 3
-    max_posts: 15
-
-  - name: "Reddit-CryptoCurrencies"
-    base_url: "https://www.reddit.com"
-    source_type: "reddit"  # ✅ Already implemented
-    subreddit: "CryptoCurrencies"
-    rate_limit_seconds: 3.0
-    enabled: true
-    priority: 3
-    max_posts: 15
-
-  - name: "Reddit-SatoshiStreetBets"
-    base_url: "https://www.reddit.com"
-    source_type: "reddit"  # ✅ Already implemented
-    subreddit: "SatoshiStreetBets"
-    rate_limit_seconds: 3.0
-    enabled: true
-    priority: 3
-    max_posts: 15
-
-  - name: "Reddit-CryptoMoonShots"
-    base_url: "https://www.reddit.com"
-    source_type: "reddit"  # ✅ Already implemented
-    subreddit: "CryptoMoonShots"
-    rate_limit_seconds: 3.0
-    enabled: false  # Can be noisy, enable if wanted
-    priority: 3
-    max_posts: 10
-
-  - name: "Reddit-NFT"
-    base_url: "https://www.reddit.com"
-    source_type: "reddit"  # ✅ Already implemented
-    subreddit: "NFT"
-    rate_limit_seconds: 3.0
-    enabled: true
-    priority: 3
-    max_posts: 10
-
-  - name: "Reddit-Chainlink"
-    base_url: "https://www.reddit.com"
-    source_type: "reddit"  # ✅ Already implemented
-    subreddit: "Chainlink"
-    rate_limit_seconds: 3.0
-    enabled: false  # Specific to one project
-    priority: 3
-    max_posts: 10
-
-  - name: "Reddit-Cardano"
-    base_url: "https://www.reddit.com"
-    source_type: "reddit"  # ✅ Already implemented
-    subreddit: "cardano"
-    rate_limit_seconds: 3.0
-    enabled: false  # Specific to one project
-    priority: 3
-    max_posts: 10
-
-  - name: "Reddit-Solana"
-    base_url: "https://www.reddit.com"
-    source_type: "reddit"  # ✅ Already implemented
-    subreddit: "solana"
-    rate_limit_seconds: 3.0
-    enabled: false  # Specific to one project
-    priority: 3
-    max_posts: 10
-
-  # INTERNATIONAL/REGIONAL SOURCES (using existing "rss" source_type)
-  - name: "CoinTurk-English"
-    base_url: "https://en.coin-turk.com"
-    rss_url: "https://en.coin-turk.com/feed/"
-    source_type: "rss"  # ✅ Already implemented
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 3
-
-  - name: "CoinDesk-Japan"
-    base_url: "https://www.coindeskjapan.com"
-    rss_url: "https://www.coindeskjapan.com/feed/"
-    source_type: "rss"  # ✅ Already implemented
-    rate_limit_seconds: 1.0
-    enabled: false  # Japanese content
-    priority: 3
-
-  # TECHNICAL/DEVELOPER FOCUSED (using existing "rss" source_type)
-  - name: "Ethereum-Blog"
-    base_url: "https://blog.ethereum.org"
-    rss_url: "https://blog.ethereum.org/feed.xml"
-    source_type: "rss"  # ✅ Already implemented
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 2
-
-  - name: "ConsenSys-Blog"
-    base_url: "https://consensys.net"
-    rss_url: "https://consensys.net/blog/feed/"
-    source_type: "rss"  # ✅ Already implemented
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 2
-
-  - name: "Chainlink-Blog"
-    base_url: "https://blog.chain.link"
-    rss_url: "https://blog.chain.link/rss/"
-    source_type: "rss"  # ✅ Already implemented
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 2
-
-  - name: "Polygon-Blog"
-    base_url: "https://blog.polygon.technology"
-    rss_url: "https://blog.polygon.technology/feed/"
-    source_type: "rss"  # ✅ Already implemented
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 2
-
-  - name: "Solana-Blog"
-    base_url: "https://solana.com"
-    rss_url: "https://solana.com/news/rss.xml"
-    source_type: "rss"  # ✅ Already implemented
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 2
-
-  - name: "Avalanche-Blog"
-    base_url: "https://medium.com/avalancheavax"
-    rss_url: "https://medium.com/feed/avalancheavax"
-    source_type: "rss"  # ✅ Already implemented
-    rate_limit_seconds: 1.0
-    enabled: true
-    priority: 2
-
-  # TELEGRAM CHANNELS (NEW SOURCE TYPE)
-  
-  # TIER 1: Premium News Outlets (Enhanced for link-only messages)
-  - name: "Bloomberg-Crypto-Telegram"
-    base_url: "https://t.me/bloombergcrypto"
-    source_type: "telegram_api"  # NEW source type
-    channel_username: "bloombergcrypto"
-    max_messages: 50
-    min_message_length: 10     # Lower threshold since we fetch article content
-    fetch_article_content: true   # NEW: Fetch content from links in messages
-    max_fetch_attempts: 15        # NEW: Limit article fetching
-    fetch_timeout: 20             # NEW: Timeout for article fetching
-    rate_limit_seconds: 4.0       # Slower due to article fetching
-    enabled: false
-    priority: 1
-
-  - name: "CoinDesk-Telegram"
-    base_url: "https://t.me/CoinDesk"
-    source_type: "telegram_api"
-    channel_username: "CoinDesk"
-    max_messages: 50
-    min_message_length: 10
-    fetch_article_content: true
-    max_fetch_attempts: 15
-    fetch_timeout: 20
-    rate_limit_seconds: 4.0
-    enabled: true
-    priority: 1
-
-  - name: "Reuters-Crypto-Telegram"
-    base_url: "https://t.me/reuters_crypto"
-    source_type: "telegram_api"
-    channel_username: "reuters_crypto"
-    max_messages: 30
-    min_message_length: 10
-    fetch_article_content: true
-    max_fetch_attempts: 10
-    fetch_timeout: 20
-    rate_limit_seconds: 4.0
-    enabled: false
-    priority: 1
-
-  - name: "CoinTelegraph-Channel"
-    base_url: "https://t.me/cointelegraph"
-    source_type: "telegram_api"
-    channel_username: "cointelegraph"
-    max_messages: 50
-    min_message_length: 10
-    fetch_article_content: true
-    max_fetch_attempts: 15
-    fetch_timeout: 20
-    rate_limit_seconds: 4.0
-    enabled: true
-    priority: 1
-
-  - name: "CryptoSlate-News"
-    base_url: "htts://t.me/cryptoslatenews"
-    source_type: "telegram_api"
-    channel_username: "cryptoslatenews"
-    max_messages: 30
-    min_message_length: 25
-    rate_limit_seconds: 3.0
-    enabled: true
-    priority: 2
-
-  - name: "BeInCrypto-Telegram"
-    base_url: "https://t.me/beincrypto"
-    source_type: "telegram_api"
-    channel_username: "beincrypto"
-    max_messages: 30
-    min_message_length: 25
-    rate_limit_seconds: 3.0
-    enabled: false
-    priority: 2
-
-  - name: "TheBlockNewsLite-Telegram"
-    base_url: "https://t.me/TheBlockNewsLite"
-    source_type: "telegram_api"
-    channel_username: "TheBlockNewsLite"
-    max_messages: 30
-    min_message_length: 25
-    rate_limit_seconds: 3.0
-    enabled: true
-    priority: 2
-
-  # TIER 3: Analytics and Insights
-  - name: "CryptoQuant-Telegram"
-    base_url: "https://t.me/cryptoquant_official"
-    source_type: "telegram_api"
-    channel_username: "cryptoquant_official"
-    max_messages: 25
-    min_message_length: 30
-    rate_limit_seconds: 3.0
-    enabled: true
-    priority: 2
-
-  - name: "Glassnode-Telegram"
-    base_url: "https://t.me/glassnode"
-    source_type: "telegram_api"
-    channel_username: "glassnode"
-    max_messages: 20
-    min_message_length: 30
-    rate_limit_seconds: 3.0
-    enabled: true
-    priority: 2
-
-  - name: "Santiment-Telegram"
-    base_url: "https://t.me/santiment_network"
-    source_type: "telegram_api"
-    channel_username: "santiment_network"
-    max_messages: 20
-    min_message_length: 30
-    rate_limit_seconds: 3.0
-    enabled: true
-    priority: 2
-
-  - name: "LookOnChain-Telegram"
-    base_url: "https://t.me/lookonchain"
-    source_type: "telegram_api"
-    channel_username: "lookonchain"
-    max_messages: 100
-    min_message_length: 25
-    rate_limit_seconds: 3.0
-    enabled: true
-    priority: 2
-
-  # TIER 4: Trading and Alerts
-  - name: "WhaleAlert-Telegram"
-    base_url: "https://t.me/whale_alert"
-    source_type: "telegram_api"
-    channel_username: "whale_alert"
-    max_messages: 100
-    min_message_length: 20
-    rate_limit_seconds: 3.0
-    enabled: true
-    priority: 3
-
-  - name: "Whale_Alert_io-Telegram"
-    base_url: "https://t.me/whale_alert_io"
-    source_type: "telegram_api"
-    channel_username: "whale_alert_io"
-    max_messages: 100
-    min_message_length: 20
-    rate_limit_seconds: 3.0
-    enabled: true
-    priority: 3
-
-  - name: "CryptoNews-Alerts"
-    base_url: "https://t.me/cryptonews_alerts"
-    source_type: "telegram_api"
-    channel_username: "cryptonews_alerts"
-    max_messages: 60
-    min_message_length: 25
-    rate_limit_seconds: 3.0
-    enabled: false  # Enable if channel exists
-    priority: 3
-
-  # TIER 5: Project-Specific (Enable as needed)
-  - name: "Ethereum-Foundation"
-    base_url: "https://t.me/EthereumannouncementEN"
-    source_type: "telegram_api"
-    channel_username: "EthereumannouncementEN"
-    max_messages: 50
-    min_message_length: 30
-    rate_limit_seconds: 3.0
-    enabled: true  # Enable if you want project-specific news
-    priority: 2
-
-  - name: "Bitcoin-Core"
-    base_url: "https://t.me/BitcoinCore"
-    source_type: "telegram_api"
-    channel_username: "BitcoinCore"
-    max_messages: 30
-    min_message_length: 30
-    rate_limit_seconds: 3.0
-    enabled: true  # Enable if channel exists
-    priority: 2
-
-  - name: "Bitcoin"
-    base_url: "https://t.me/bitcoin"
-    source_type: "telegram_api"
-    channel_username: "bitcoin"
-    max_messages: 30
-    min_message_length: 30
-    rate_limit_seconds: 3.0
-    enabled: true  # Enable if channel exists
-    priority: 2
-
-  - name: "Chainlink-Official"
-    base_url: "https://t.me/chainlinkofficial"
-    source_type: "telegram_api"
-    channel_username: "chainlinkofficial"
-    max_messages: 30
-    min_message_length: 30
-    rate_limit_seconds: 3.0
-    enabled: false  # Enable if you want project updates
-    priority: 2
-
-  - name: "Solana-News"
-    base_url: "https://t.me/solana"
-    source_type: "telegram_api"
-    channel_username: "solana"
-    max_messages: 30
-    min_message_length: 30
-    rate_limit_seconds: 3.0
-    enabled: true  # Enable if you want project updates
-    priority: 2
+#  # TIER 1: Premium sources with enhanced web scraping
+#  - name: "CoinDesk"
+#    base_url: "https://www.coindesk.com"
+#    rss_url: "https://www.coindesk.com/arc/outboundfeeds/rss/"
+#    source_type: "web"  # Enhanced web scraping
+#    enable_web_archive: true
+#    max_archive_pages: 20
+#    archive_url_pattern: "https://www.coindesk.com/{year}/{month:02d}/{day:02d}/"
+#    rate_limit_seconds: 2.0
+#    enabled: true
+#    priority: 1
+#    selectors:
+#      title: "h1.headline, h1"
+#      content: ".entry-content, article, .post-content"
+#      timestamp: "time, .timestamp, .date"
+#      author: ".author, .byline"
+#
+#  - name: "CoinTelegraph"
+#    base_url: "https://cointelegraph.com"
+#    rss_url: "https://cointelegraph.com/rss"
+##    source_type: "web"  # Enhanced web scraping
+##    enable_web_archive: true
+#    max_archive_pages: 15
+#    rate_limit_seconds: 2.0
+#    enabled: true
+#    priority: 1
+##    selectors:
+##      title: "h1, .post-title"
+##      content: ".post-content, article"
+##      timestamp: "time, .post-date"
+##      author: ".author-name"
+#
+#  - name: "TheBlock"
+#    base_url: "https://www.theblock.co"
+#    rss_url: "https://www.theblock.co/rss.xml"
+#    rate_limit_seconds: 2.0
+#    enabled: true
+#    priority: 1
+#
+#  - name: "Decrypt"
+#    base_url: "https://decrypt.co"
+#    rss_url: "https://decrypt.co/feed"
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 1
+#
+#  - name: "Blockworks"
+#    base_url: "https://blockworks.co"
+#    rss_url: "https://blockworks.co/feed/"  # Fixed URL from old config
+#    rate_limit_seconds: 1.5
+#    enabled: true
+#    priority: 1
+#
+#  - name: "Messari"
+#    base_url: "https://messari.io"
+#    rss_url: "https://messari.io/rss"
+#    rate_limit_seconds: 2.0
+#    enabled: true
+#    priority: 1
+#
+#  # TIER 2: Quality sources
+#  - name: "CryptoNews"
+#    base_url: "https://cryptonews.com"
+#    rss_url: "https://cryptonews.com/news/feed/"
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 2
+#
+#  - name: "CryptoSlate"
+#    base_url: "https://cryptoslate.com"
+#    rss_url: "https://cryptoslate.com/feed/"
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 2
+#
+#  - name: "BeInCrypto"
+#    base_url: "https://beincrypto.com"
+#    rss_url: "https://beincrypto.com/feed/"
+#    rate_limit_seconds: 1.0
+#    enabled: false  # Often blocks requests
+#    priority: 2
+#
+#  - name: "NewsBTC"
+#    base_url: "https://www.newsbtc.com"
+#    rss_url: "https://www.newsbtc.com/feed/"
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 2
+#
+#  - name: "Bitcoinist"
+#    base_url: "https://bitcoinist.com"
+#    rss_url: "https://bitcoinist.com/feed/"
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 2
+#
+#  - name: "Bitcoin.com"
+#    base_url: "https://news.bitcoin.com"
+#    rss_url: "https://news.bitcoin.com/feed/"
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 2
+#
+#  - name: "CryptoPotato"
+#    base_url: "https://cryptopotato.com"
+#    rss_url: "https://cryptopotato.com/feed/"
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 2
+#
+#  - name: "AMBCrypto"
+#    base_url: "https://ambcrypto.com"
+#    rss_url: "https://ambcrypto.com/feed/"
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 2
+#
+#  - name: "DailyHodl"
+#    base_url: "https://dailyhodl.com"
+#    rss_url: "https://dailyhodl.com/feed/"
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 2
+#
+#  - name: "CoinGecko"
+#    base_url: "https://www.coingecko.com"
+#    rss_url: "https://blog.coingecko.com/feed/"  # Fixed URL
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 2
+#
+#  - name: "DeFiPulse"
+#    base_url: "https://www.defipulse.com"
+#    rss_url: "https://www.defipulse.com/blog/rss.xml"
+#    rate_limit_seconds: 1.0
+#    enabled: false  # Often 404
+#    priority: 2
+#
+#  - name: "DeFiLlama-Blog"
+#    base_url: "https://blog.defillama.com"
+#    rss_url: "https://blog.defillama.com/rss.xml"
+#    rate_limit_seconds: 1.0
+#    enabled: false  # DNS issues
+#    priority: 2
+#
+#  # TIER 3: Additional sources
+#  - name: "CoinJournal"
+#    base_url: "https://coinjournal.net"
+#    rss_url: "https://coinjournal.net/feed/"
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 3
+#
+#  - name: "CryptoDaily"
+#    base_url: "https://cryptodaily.co.uk"
+#    rss_url: "https://cryptodaily.co.uk/feed"
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 3
+#
+#  - name: "Finbold"
+#    base_url: "https://finbold.com"
+#    rss_url: "https://finbold.com/feed/"
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 3
+#
+#  - name: "U.Today"
+#    base_url: "https://u.today"
+#    rss_url: "https://u.today/rss"
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 3
+#
+#  - name: "CoinEdition"
+#    base_url: "https://coinedition.com"
+#    rss_url: "https://coinedition.com/feed/"
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 3
+#
+#  - name: "Invezz"
+#    base_url: "https://invezz.com"
+#    rss_url: "https://invezz.com/news/crypto/feed/"
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 3
+#
+#  - name: "CoinTurk"
+#    base_url: "https://en.coin-turk.com"
+#    rss_url: "https://en.coin-turk.com/feed/"
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 3
+#
+#  - name: "Cryptopolitan"
+#    base_url: "https://www.cryptopolitan.com"
+#    rss_url: "https://www.cryptopolitan.com/feed/"
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 3
+#
+#  # MAINSTREAM FINANCE (often have access issues)
+#  - name: "Bloomberg-Crypto"
+#    base_url: "https://www.bloomberg.com"
+#    rss_url: "https://feeds.bloomberg.com/crypto/news.rss"
+#    rate_limit_seconds: 2.0
+#    enabled: false  # Often 403
+#    priority: 1
+#
+#  - name: "Reuters-Crypto"
+#    base_url: "https://www.reuters.com"
+#    rss_url: "https://www.reuters.com/markets/currencies/rss"
+#    rate_limit_seconds: 2.0
+#    enabled: false  # Often 401
+#    priority: 1
+#
+#  - name: "WSJ-Crypto"
+#    base_url: "https://www.wsj.com"
+#    rss_url: "https://feeds.wsj.com/public/resources/documents/WSJcom-MARKETS.xml"
+#    rate_limit_seconds: 2.0
+#    enabled: false  # Requires subscription
+#    priority: 1
+#
+#  # PROBLEMATIC SOURCES (from old config)
+#  - name: "CoinMarketCap"
+#    base_url: "https://coinmarketcap.com"
+#    rss_url: "https://coinmarketcap.com/headlines/rss/"
+#    rate_limit_seconds: 1.5
+#    enabled: false  # Often 404
+#    priority: 1
+#
+#  - name: "NFTGo"
+#    base_url: "https://nftgo.io"
+#    rss_url: "https://nftgo.io/news/rss"
+#    rate_limit_seconds: 1.0
+#    enabled: false  # NFT-specific
+#    priority: 3
+#
+#  # API SOURCES
+#  - name: "CryptoCompare"
+#    base_url: "https://www.cryptocompare.com"
+#    source_type: "api"
+#    rate_limit_seconds: 2.0
+#    enabled: true
+#    priority: 1
+#
+#  # REDDIT SOURCES (NEW!)
+#  - name: "Reddit-CryptoCurrency"
+#    base_url: "https://www.reddit.com"
+#    source_type: "reddit"
+#    subreddit: "CryptoCurrency"
+#    rate_limit_seconds: 3.0
+#    enabled: true
+#    priority: 2
+#    max_posts: 50
+#
+#  - name: "Reddit-Bitcoin"
+#    base_url: "https://www.reddit.com"
+#    source_type: "reddit"
+#    subreddit: "Bitcoin"
+#    rate_limit_seconds: 3.0
+#    enabled: true
+#    priority: 2
+#    max_posts: 50
+#
+#  - name: "Reddit-Ethereum"
+#    base_url: "https://www.reddit.com"
+#    source_type: "reddit"
+#    subreddit: "ethereum"
+#    rate_limit_seconds: 3.0
+#    enabled: true
+#    priority: 2
+#    max_posts: 30
+#
+#  - name: "Reddit-CryptoMarkets"
+#    base_url: "https://www.reddit.com"
+#    source_type: "reddit"
+#    subreddit: "CryptoMarkets"
+#    rate_limit_seconds: 3.0
+#    enabled: true
+#    priority: 3
+#    max_posts: 30
+#
+#  - name: "Reddit-BTC"
+#    base_url: "https://www.reddit.com"
+#    source_type: "reddit"
+#    subreddit: "btc"
+#    rate_limit_seconds: 3.0
+#    enabled: true
+#    priority: 3
+#    max_posts: 20
+#
+#  - name: "Reddit-EthTrader"
+#    base_url: "https://www.reddit.com"
+#    source_type: "reddit"
+#    subreddit: "ethtrader"
+#    rate_limit_seconds: 3.0
+#    enabled: true
+#    priority: 3
+#    max_posts: 20
+#
+## GOOGLE NEWS SOURCES (ENHANCED WITH DYNAMIC TIME RANGES)
+#
+#  # Primary RSS scraper with dynamic date range enhancement
+#  - name: "Google-News-RSS"
+#    base_url: "https://news.google.com"
+#    source_type: "google_news_rss"
+#    language: "en"
+#    country: "US"
+#    search_queries:
+#      - "cryptocurrency"
+#      - "bitcoin news"
+#      - "ethereum news"
+#      - "crypto market"
+#      - "blockchain news"
+#      - "defi news"
+#      - "nft news"
+#      - "altcoin news"
+#    max_articles_per_query: 15
+#    fetch_full_content: false        # Fast and reliable
+#    allow_title_only: true          # Allow title + summary
+#    google_news_min_content: 10     # Lower threshold for Google News
+#    use_date_enhancement: true      # Add dynamic date ranges to queries
+#    default_days_back: 7            # Default when no hours_back provided
+#    rate_limit_seconds: 2.0
+#    enabled: true
+#    priority: 1
+#
+## Combined scraper with improved fallbacks and dynamic ranges
+#  - name: "Google-News-Combined"
+#    base_url: "https://news.google.com"
+#    source_type: "google_news_combined"
+#    language: "en"
+#    country: "US"
+#    search_queries:
+#      - "cryptocurrency"
+#      - "bitcoin"
+#      - "ethereum"
+#      - "crypto news"
+#      - "blockchain"
+#      - "defi"
+#    max_articles_per_query: 15
+#    use_web_backup: false           # Disable web backup (causes issues)
+#    rss_ratio: 1.0                  # 100% RSS for reliability
+#    fetch_full_content: false
+#    allow_title_only: true
+#    google_news_min_content: 10
+#    use_date_enhancement: true      # Enhanced RSS queries
+#    default_days_back: 7            # Default time range
+#    rate_limit_seconds: 2.5
+#    enabled: true
+#    priority: 1
+#
+#  # Short-term focused scraper (for recent news)
+#  - name: "Google-News-Recent"
+#    base_url: "https://news.google.com"
+#    source_type: "google_news_rss"
+#    language: "en"
+#    country: "US"
+#    search_queries:
+#      - "cryptocurrency breaking"
+#      - "bitcoin news today"
+#      - "ethereum latest"
+#      - "crypto market update"
+#    max_articles_per_query: 10
+#    fetch_full_content: false
+#    allow_title_only: true
+#    google_news_min_content: 10
+#    use_date_enhancement: true
+#    default_days_back: 1            # Focus on very recent news
+#    rate_limit_seconds: 2.0
+#    enabled: false                  # Enable for breaking news focus
+#    priority: 1
+#
+#  # Long-term historical scraper (for backfilling)
+#  - name: "Google-News-Historical"
+#    base_url: "https://news.google.com"
+#    source_type: "google_news_rss"
+#    language: "en"
+#    country: "US"
+#    search_queries:
+#      - "cryptocurrency"           # Broader terms for historical
+#      - "bitcoin"
+#      - "ethereum"
+#      - "crypto regulation"
+#      - "blockchain adoption"
+#    max_articles_per_query: 20
+#    fetch_full_content: false
+#    allow_title_only: true
+#    google_news_min_content: 10
+#    use_date_enhancement: true
+#    default_days_back: 30           # Longer default for historical
+#    rate_limit_seconds: 3.0         # Slower for historical scraping
+#    enabled: false                  # Enable manually for historical collection
+#    priority: 2
+#
+#  # Web scraper - improved but still experimental
+#  - name: "Google-News-Web"
+#    base_url: "https://news.google.com"
+#    source_type: "google_news_web"
+#    language: "en"
+#    country: "US"
+#    search_queries:
+#      - "cryptocurrency news"       # Simpler queries for web scraping
+#      - "bitcoin price"
+#      - "ethereum latest"
+#    allow_title_only: true
+#    google_news_min_content: 10
+#    default_days_back: 3            # Shorter range for web scraping
+#    rate_limit_seconds: 5.0         # Much slower to avoid blocks
+#    enabled: false                  # Keep disabled until Google blocks are resolved
+#    priority: 3
+#
+#  # Performance-optimized version (fastest)
+#  - name: "Google-News-Fast"
+#    base_url: "https://news.google.com"
+#    source_type: "google_news_rss"
+#    language: "en"
+#    country: "US"
+#    search_queries:
+#      - "cryptocurrency"
+#      - "bitcoin"
+#      - "ethereum"
+#    max_articles_per_query: 10
+#    fetch_full_content: false  # Fast mode - no full content fetching
+#    allow_title_only: true
+#    google_news_min_content: 5   # Very low threshold
+#    rate_limit_seconds: 1.0
+#    enabled: false  # Enable if you want fastest possible scraping
+#    priority: 1
+#
+#  # Full content version (slowest but most complete)
+#  - name: "Google-News-Full-Content"
+#    base_url: "https://news.google.com"
+#    source_type: "google_news_rss"
+#    language: "en"
+#    country: "US"
+#    search_queries:
+#      - "cryptocurrency"
+#      - "bitcoin news"
+#      - "ethereum news"
+#    max_articles_per_query: 5   # Fewer articles due to content fetching
+#    fetch_full_content: true    # Fetch full article content
+#    allow_title_only: false     # Require full content
+#    google_news_min_content: 100  # Higher threshold for full content
+#    rate_limit_seconds: 4.0     # Slower to be respectful when fetching content
+#    enabled: false  # Enable if you want full article content
+#    priority: 1
+#
+## Alternative configuration for different countries/languages:
+## - name: "Google-News-UK"
+##   base_url: "https://news.google.com"
+##   source_type: "google_news_combined"
+##   language: "en"
+##   country: "GB"
+##   search_queries:
+##     - "cryptocurrency uk"
+##     - "bitcoin regulation uk"
+##     - "crypto tax uk"
+##   rate_limit_seconds: 2.5
+##   enabled: false
+##   priority: 2
+#
+#  - name: "Google-News-Global"
+#    base_url: "https://news.google.com"
+#    source_type: "google_news_combined"
+#    language: "en"
+#    country: "US"
+#    search_queries:
+#      - "cryptocurrency global"
+#      - "bitcoin international"
+#      - "crypto adoption worldwide"
+#    rate_limit_seconds: 2.5
+#    enabled: false
+#    priority: 2
+#
+#  # IMMEDIATE RSS ADDITIONS (using existing "rss" source_type)
+#  - name: "CoinGape"
+#    base_url: "https://coingape.com"
+#    rss_url: "https://coingape.com/feed/"
+#    source_type: "rss"  # ✅ Already implemented
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 3
+#
+#  - name: "ZyCrypto"
+#    base_url: "https://zycrypto.com"
+#    rss_url: "https://zycrypto.com/feed/"
+#    source_type: "rss"  # ✅ Already implemented
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 3
+#
+#  - name: "CryptoGlobe"
+#    base_url: "https://www.cryptoglobe.com"
+#    rss_url: "https://www.cryptoglobe.com/latest/feed/"
+#    source_type: "rss"  # ✅ Already implemented
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 3
+#
+#  - name: "Coinspeaker"
+#    base_url: "https://www.coinspeaker.com"
+#    rss_url: "https://www.coinspeaker.com/feed/"
+#    source_type: "rss"  # ✅ Already implemented
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 3
+#
+#  - name: "CryptoBasic"
+#    base_url: "https://cryptobasic.com"
+#    rss_url: "https://cryptobasic.com/feed/"
+#    source_type: "rss"  # ✅ Already implemented
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 3
+#
+#  - name: "BitcoinNews"
+#    base_url: "https://bitcoinnews.com"
+#    rss_url: "https://bitcoinnews.com/feed/"
+#    source_type: "rss"  # ✅ Already implemented
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 3
+#
+#  - name: "CoinQuora"
+#    base_url: "https://coinquora.com"
+#    rss_url: "https://coinquora.com/feed/"
+#    source_type: "rss"  # ✅ Already implemented
+#    rate_limit_seconds: 1.0
+#    enabled: false
+#    priority: 3
+#
+#  - name: "BitcoinEthereumNews"
+#    base_url: "https://bitcoinethereumnews.com"
+#    rss_url: "https://bitcoinethereumnews.com/feed/"
+#    source_type: "rss"  # ✅ Already implemented
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 3
+#
+#  # IMMEDIATE REDDIT ADDITIONS (using existing "reddit" source_type)
+#  - name: "Reddit-DeFi"
+#    base_url: "https://www.reddit.com"
+#    source_type: "reddit"  # ✅ Already implemented
+#    subreddit: "defi"
+#    rate_limit_seconds: 3.0
+#    enabled: true
+#    priority: 3
+#    max_posts: 20
+#
+#  - name: "Reddit-Altcoin"
+#    base_url: "https://www.reddit.com"
+#    source_type: "reddit"  # ✅ Already implemented
+#    subreddit: "altcoin"
+#    rate_limit_seconds: 3.0
+#    enabled: true
+#    priority: 3
+#    max_posts: 20
+#
+#  - name: "Reddit-CryptoTechnology"
+#    base_url: "https://www.reddit.com"
+#    source_type: "reddit"  # ✅ Already implemented
+#    subreddit: "CryptoTechnology"
+#    rate_limit_seconds: 3.0
+#    enabled: true
+#    priority: 3
+#    max_posts: 15
+#
+#  - name: "Reddit-CryptoCurrencies"
+#    base_url: "https://www.reddit.com"
+#    source_type: "reddit"  # ✅ Already implemented
+#    subreddit: "CryptoCurrencies"
+#    rate_limit_seconds: 3.0
+#    enabled: true
+#    priority: 3
+#    max_posts: 15
+#
+#  - name: "Reddit-SatoshiStreetBets"
+#    base_url: "https://www.reddit.com"
+#    source_type: "reddit"  # ✅ Already implemented
+#    subreddit: "SatoshiStreetBets"
+#    rate_limit_seconds: 3.0
+#    enabled: true
+#    priority: 3
+#    max_posts: 15
+#
+#  - name: "Reddit-CryptoMoonShots"
+#    base_url: "https://www.reddit.com"
+#    source_type: "reddit"  # ✅ Already implemented
+#    subreddit: "CryptoMoonShots"
+#    rate_limit_seconds: 3.0
+#    enabled: false  # Can be noisy, enable if wanted
+#    priority: 3
+#    max_posts: 10
+#
+#  - name: "Reddit-NFT"
+#    base_url: "https://www.reddit.com"
+#    source_type: "reddit"  # ✅ Already implemented
+#    subreddit: "NFT"
+#    rate_limit_seconds: 3.0
+#    enabled: true
+#    priority: 3
+#    max_posts: 10
+#
+#  - name: "Reddit-Chainlink"
+#    base_url: "https://www.reddit.com"
+#    source_type: "reddit"  # ✅ Already implemented
+#    subreddit: "Chainlink"
+#    rate_limit_seconds: 3.0
+#    enabled: false  # Specific to one project
+#    priority: 3
+#    max_posts: 10
+#
+#  - name: "Reddit-Cardano"
+#    base_url: "https://www.reddit.com"
+#    source_type: "reddit"  # ✅ Already implemented
+#    subreddit: "cardano"
+#    rate_limit_seconds: 3.0
+#    enabled: false  # Specific to one project
+#    priority: 3
+#    max_posts: 10
+#
+#  - name: "Reddit-Solana"
+#    base_url: "https://www.reddit.com"
+#    source_type: "reddit"  # ✅ Already implemented
+#    subreddit: "solana"
+#    rate_limit_seconds: 3.0
+#    enabled: false  # Specific to one project
+#    priority: 3
+#    max_posts: 10
+#
+#  # INTERNATIONAL/REGIONAL SOURCES (using existing "rss" source_type)
+#  - name: "CoinTurk-English"
+#    base_url: "https://en.coin-turk.com"
+#    rss_url: "https://en.coin-turk.com/feed/"
+#    source_type: "rss"  # ✅ Already implemented
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 3
+#
+#  - name: "CoinDesk-Japan"
+#    base_url: "https://www.coindeskjapan.com"
+#    rss_url: "https://www.coindeskjapan.com/feed/"
+#    source_type: "rss"  # ✅ Already implemented
+#    rate_limit_seconds: 1.0
+#    enabled: false  # Japanese content
+#    priority: 3
+#
+#  # TECHNICAL/DEVELOPER FOCUSED (using existing "rss" source_type)
+#  - name: "Ethereum-Blog"
+#    base_url: "https://blog.ethereum.org"
+#    rss_url: "https://blog.ethereum.org/feed.xml"
+#    source_type: "rss"  # ✅ Already implemented
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 2
+#
+#  - name: "ConsenSys-Blog"
+#    base_url: "https://consensys.net"
+#    rss_url: "https://consensys.net/blog/feed/"
+#    source_type: "rss"  # ✅ Already implemented
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 2
+#
+#  - name: "Chainlink-Blog"
+#    base_url: "https://blog.chain.link"
+#    rss_url: "https://blog.chain.link/rss/"
+#    source_type: "rss"  # ✅ Already implemented
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 2
+#
+#  - name: "Polygon-Blog"
+#    base_url: "https://blog.polygon.technology"
+#    rss_url: "https://blog.polygon.technology/feed/"
+#    source_type: "rss"  # ✅ Already implemented
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 2
+#
+#  - name: "Solana-Blog"
+#    base_url: "https://solana.com"
+#    rss_url: "https://solana.com/news/rss.xml"
+#    source_type: "rss"  # ✅ Already implemented
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 2
+#
+#  - name: "Avalanche-Blog"
+#    base_url: "https://medium.com/avalancheavax"
+#    rss_url: "https://medium.com/feed/avalancheavax"
+#    source_type: "rss"  # ✅ Already implemented
+#    rate_limit_seconds: 1.0
+#    enabled: true
+#    priority: 2
+#
+#  # TELEGRAM CHANNELS (NEW SOURCE TYPE)
+#
+#  # TIER 1: Premium News Outlets (Enhanced for link-only messages)
+#  - name: "Bloomberg-Crypto-Telegram"
+#    base_url: "https://t.me/bloombergcrypto"
+#    source_type: "telegram_api"  # NEW source type
+#    channel_username: "bloombergcrypto"
+#    max_messages: 50
+#    min_message_length: 10     # Lower threshold since we fetch article content
+#    fetch_article_content: true   # NEW: Fetch content from links in messages
+#    max_fetch_attempts: 15        # NEW: Limit article fetching
+#    fetch_timeout: 20             # NEW: Timeout for article fetching
+#    rate_limit_seconds: 4.0       # Slower due to article fetching
+#    enabled: false
+#    priority: 1
+#
+#  - name: "CoinDesk-Telegram"
+#    base_url: "https://t.me/CoinDesk"
+#    source_type: "telegram_api"
+#    channel_username: "CoinDesk"
+#    max_messages: 50
+#    min_message_length: 10
+#    fetch_article_content: true
+#    max_fetch_attempts: 15
+#    fetch_timeout: 20
+#    rate_limit_seconds: 4.0
+#    enabled: true
+#    priority: 1
+#
+#  - name: "Reuters-Crypto-Telegram"
+#    base_url: "https://t.me/reuters_crypto"
+#    source_type: "telegram_api"
+#    channel_username: "reuters_crypto"
+#    max_messages: 30
+#    min_message_length: 10
+#    fetch_article_content: true
+#    max_fetch_attempts: 10
+#    fetch_timeout: 20
+#    rate_limit_seconds: 4.0
+#    enabled: false
+#    priority: 1
+#
+#  - name: "CoinTelegraph-Channel"
+#    base_url: "https://t.me/cointelegraph"
+#    source_type: "telegram_api"
+#    channel_username: "cointelegraph"
+#    max_messages: 50
+#    min_message_length: 10
+#    fetch_article_content: true
+#    max_fetch_attempts: 15
+#    fetch_timeout: 20
+#    rate_limit_seconds: 4.0
+#    enabled: true
+#    priority: 1
+#
+#  - name: "CryptoSlate-News"
+#    base_url: "htts://t.me/cryptoslatenews"
+#    source_type: "telegram_api"
+#    channel_username: "cryptoslatenews"
+#    max_messages: 30
+#    min_message_length: 25
+#    rate_limit_seconds: 3.0
+#    enabled: true
+#    priority: 2
+#
+#  - name: "BeInCrypto-Telegram"
+#    base_url: "https://t.me/beincrypto"
+#    source_type: "telegram_api"
+#    channel_username: "beincrypto"
+#    max_messages: 30
+#    min_message_length: 25
+#    rate_limit_seconds: 3.0
+#    enabled: false
+#    priority: 2
+#
+#  - name: "TheBlockNewsLite-Telegram"
+#    base_url: "https://t.me/TheBlockNewsLite"
+#    source_type: "telegram_api"
+#    channel_username: "TheBlockNewsLite"
+#    max_messages: 30
+#    min_message_length: 25
+#    rate_limit_seconds: 3.0
+#    enabled: true
+#    priority: 2
+#
+#  # TIER 3: Analytics and Insights
+#  - name: "CryptoQuant-Telegram"
+#    base_url: "https://t.me/cryptoquant_official"
+#    source_type: "telegram_api"
+#    channel_username: "cryptoquant_official"
+#    max_messages: 25
+#    min_message_length: 30
+#    rate_limit_seconds: 3.0
+#    enabled: true
+#    priority: 2
+#
+#  - name: "Glassnode-Telegram"
+#    base_url: "https://t.me/glassnode"
+#    source_type: "telegram_api"
+#    channel_username: "glassnode"
+#    max_messages: 20
+#    min_message_length: 30
+#    rate_limit_seconds: 3.0
+#    enabled: true
+#    priority: 2
+#
+#  - name: "Santiment-Telegram"
+#    base_url: "https://t.me/santiment_network"
+#    source_type: "telegram_api"
+#    channel_username: "santiment_network"
+#    max_messages: 20
+#    min_message_length: 30
+#    rate_limit_seconds: 3.0
+#    enabled: true
+#    priority: 2
+#
+#  - name: "LookOnChain-Telegram"
+#    base_url: "https://t.me/lookonchain"
+#    source_type: "telegram_api"
+#    channel_username: "lookonchain"
+#    max_messages: 100
+#    min_message_length: 25
+#    rate_limit_seconds: 3.0
+#    enabled: true
+#    priority: 2
+#
+#  # TIER 4: Trading and Alerts
+#  - name: "WhaleAlert-Telegram"
+#    base_url: "https://t.me/whale_alert"
+#    source_type: "telegram_api"
+#    channel_username: "whale_alert"
+#    max_messages: 100
+#    min_message_length: 20
+#    rate_limit_seconds: 3.0
+#    enabled: true
+#    priority: 3
+#
+#  - name: "Whale_Alert_io-Telegram"
+#    base_url: "https://t.me/whale_alert_io"
+#    source_type: "telegram_api"
+#    channel_username: "whale_alert_io"
+#    max_messages: 100
+#    min_message_length: 20
+#    rate_limit_seconds: 3.0
+#    enabled: true
+#    priority: 3
+#
+#  - name: "CryptoNews-Alerts"
+#    base_url: "https://t.me/cryptonews_alerts"
+#    source_type: "telegram_api"
+#    channel_username: "cryptonews_alerts"
+#    max_messages: 60
+#    min_message_length: 25
+#    rate_limit_seconds: 3.0
+#    enabled: false  # Enable if channel exists
+#    priority: 3
+#
+#  # TIER 5: Project-Specific (Enable as needed)
+#  - name: "Ethereum-Foundation"
+#    base_url: "https://t.me/EthereumannouncementEN"
+#    source_type: "telegram_api"
+#    channel_username: "EthereumannouncementEN"
+#    max_messages: 50
+#    min_message_length: 30
+#    rate_limit_seconds: 3.0
+#    enabled: true  # Enable if you want project-specific news
+#    priority: 2
+#
+#  - name: "Bitcoin-Core"
+#    base_url: "https://t.me/BitcoinCore"
+#    source_type: "telegram_api"
+#    channel_username: "BitcoinCore"
+#    max_messages: 30
+#    min_message_length: 30
+#    rate_limit_seconds: 3.0
+#    enabled: true  # Enable if channel exists
+#    priority: 2
+#
+#  - name: "Bitcoin"
+#    base_url: "https://t.me/bitcoin"
+#    source_type: "telegram_api"
+#    channel_username: "bitcoin"
+#    max_messages: 30
+#    min_message_length: 30
+#    rate_limit_seconds: 3.0
+#    enabled: true  # Enable if channel exists
+#    priority: 2
+#
+#  - name: "Chainlink-Official"
+#    base_url: "https://t.me/chainlinkofficial"
+#    source_type: "telegram_api"
+#    channel_username: "chainlinkofficial"
+#    max_messages: 30
+#    min_message_length: 30
+#    rate_limit_seconds: 3.0
+#    enabled: false  # Enable if you want project updates
+#    priority: 2
+#
+#  - name: "Solana-News"
+#    base_url: "https://t.me/solana"
+#    source_type: "telegram_api"
+#    channel_username: "solana"
+#    max_messages: 30
+#    min_message_length: 30
+#    rate_limit_seconds: 3.0
+#    enabled: true  # Enable if you want project updates
+#    priority: 2
 
   # TIER 6: Regional/Language
 # API settings (from old config)
+
+  - name: "TwitterSearchBTC"
+    source_type: "twitter_api"
+    enabled: true
+    priority: 1
+    query: "bitcoin OR btc -is:retweet lang:en"
+    max_results: 50            # Twitter API cap per call is 100; default is 25
+    since_id: ""               # e.g., "1850000000000000000" to fetch only newer tweets
+    tweet_fields: "id,text,author_id,created_at,lang,public_metrics,entities"
+    expansions: "author_id"
+    user_fields: "id,name,username,profile_image_url,verified"
+
+    # Operational knobs (optional)
+    rate_limit_seconds: 1.0    # pacing if your runner observes rate limiting
+
+
+  - name: Twitter-Feeds-exchanges
+    source_type: twitter_web
+    handles:
+      - binance
+      - coinbase
+    nitter_base: "https://nitter.net"     # optional
+    per_handle_limit: 50
+    priority: 1
+
+
 apis:
   cryptocompare:
     enabled: true
