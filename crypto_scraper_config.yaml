@@ -394,7 +394,7 @@ sources:
     base_url: "https://www.bloomberg.com"
     rss_url: "https://feeds.bloomberg.com/crypto/news.rss"
     rate_limit_seconds: 2.0
-    enabled: true  # Often 403
+    enabled: false  # Often 403
     priority: 1
 
   - name: "Reuters-Crypto"
@@ -886,6 +886,215 @@ sources:
     enabled: true
     priority: 2
 
+  # TELEGRAM CHANNELS (NEW SOURCE TYPE)
+  
+  # TIER 1: Premium News Outlets (Enhanced for link-only messages)
+  - name: "Bloomberg-Crypto-Telegram"
+    base_url: "https://t.me/bloombergcrypto"
+    source_type: "telegram_api"  # NEW source type
+    channel_username: "bloombergcrypto"
+    max_messages: 50
+    min_message_length: 10     # Lower threshold since we fetch article content
+    fetch_article_content: true   # NEW: Fetch content from links in messages
+    max_fetch_attempts: 15        # NEW: Limit article fetching
+    fetch_timeout: 20             # NEW: Timeout for article fetching
+    rate_limit_seconds: 4.0       # Slower due to article fetching
+    enabled: false
+    priority: 1
+
+  - name: "CoinDesk-Telegram"
+    base_url: "https://t.me/CoinDesk"
+    source_type: "telegram_api"
+    channel_username: "CoinDesk"
+    max_messages: 50
+    min_message_length: 10
+    fetch_article_content: true
+    max_fetch_attempts: 15
+    fetch_timeout: 20
+    rate_limit_seconds: 4.0
+    enabled: true
+    priority: 1
+
+  - name: "Reuters-Crypto-Telegram"
+    base_url: "https://t.me/reuters_crypto"
+    source_type: "telegram_api"
+    channel_username: "reuters_crypto"
+    max_messages: 30
+    min_message_length: 10
+    fetch_article_content: true
+    max_fetch_attempts: 10
+    fetch_timeout: 20
+    rate_limit_seconds: 4.0
+    enabled: false
+    priority: 1
+
+  - name: "CoinTelegraph-Channel"
+    base_url: "https://t.me/cointelegraph"
+    source_type: "telegram_api"
+    channel_username: "cointelegraph"
+    max_messages: 50
+    min_message_length: 10
+    fetch_article_content: true
+    max_fetch_attempts: 15
+    fetch_timeout: 20
+    rate_limit_seconds: 4.0
+    enabled: true
+    priority: 1
+
+  - name: "CryptoSlate-News"
+    base_url: "htts://t.me/cryptoslatenews"
+    source_type: "telegram_api"
+    channel_username: "cryptoslatenews"
+    max_messages: 30
+    min_message_length: 25
+    rate_limit_seconds: 3.0
+    enabled: true
+    priority: 2
+
+  - name: "BeInCrypto-Telegram"
+    base_url: "https://t.me/beincrypto"
+    source_type: "telegram_api"
+    channel_username: "beincrypto"
+    max_messages: 30
+    min_message_length: 25
+    rate_limit_seconds: 3.0
+    enabled: false
+    priority: 2
+
+  - name: "TheBlockNewsLite-Telegram"
+    base_url: "https://t.me/TheBlockNewsLite"
+    source_type: "telegram_api"
+    channel_username: "TheBlockNewsLite"
+    max_messages: 30
+    min_message_length: 25
+    rate_limit_seconds: 3.0
+    enabled: true
+    priority: 2
+
+  # TIER 3: Analytics and Insights
+  - name: "CryptoQuant-Telegram"
+    base_url: "https://t.me/cryptoquant_official"
+    source_type: "telegram_api"
+    channel_username: "cryptoquant_official"
+    max_messages: 25
+    min_message_length: 30
+    rate_limit_seconds: 3.0
+    enabled: true
+    priority: 2
+
+  - name: "Glassnode-Telegram"
+    base_url: "https://t.me/glassnode"
+    source_type: "telegram_api"
+    channel_username: "glassnode"
+    max_messages: 20
+    min_message_length: 30
+    rate_limit_seconds: 3.0
+    enabled: true
+    priority: 2
+
+  - name: "Santiment-Telegram"
+    base_url: "https://t.me/santiment_network"
+    source_type: "telegram_api"
+    channel_username: "santiment_network"
+    max_messages: 20
+    min_message_length: 30
+    rate_limit_seconds: 3.0
+    enabled: true
+    priority: 2
+
+  - name: "LookOnChain-Telegram"
+    base_url: "https://t.me/lookonchain"
+    source_type: "telegram_api"
+    channel_username: "lookonchain"
+    max_messages: 100
+    min_message_length: 25
+    rate_limit_seconds: 3.0
+    enabled: true
+    priority: 2
+
+  # TIER 4: Trading and Alerts
+  - name: "WhaleAlert-Telegram"
+    base_url: "https://t.me/whale_alert"
+    source_type: "telegram_api"
+    channel_username: "whale_alert"
+    max_messages: 100
+    min_message_length: 20
+    rate_limit_seconds: 3.0
+    enabled: true
+    priority: 3
+
+  - name: "Whale_Alert_io-Telegram"
+    base_url: "https://t.me/whale_alert_io"
+    source_type: "telegram_api"
+    channel_username: "whale_alert_io"
+    max_messages: 100
+    min_message_length: 20
+    rate_limit_seconds: 3.0
+    enabled: true
+    priority: 3
+
+  - name: "CryptoNews-Alerts"
+    base_url: "https://t.me/cryptonews_alerts"
+    source_type: "telegram_api"
+    channel_username: "cryptonews_alerts"
+    max_messages: 60
+    min_message_length: 25
+    rate_limit_seconds: 3.0
+    enabled: false  # Enable if channel exists
+    priority: 3
+
+  # TIER 5: Project-Specific (Enable as needed)
+  - name: "Ethereum-Foundation"
+    base_url: "https://t.me/EthereumannouncementEN"
+    source_type: "telegram_api"
+    channel_username: "EthereumannouncementEN"
+    max_messages: 50
+    min_message_length: 30
+    rate_limit_seconds: 3.0
+    enabled: true  # Enable if you want project-specific news
+    priority: 2
+
+  - name: "Bitcoin-Core"
+    base_url: "https://t.me/BitcoinCore"
+    source_type: "telegram_api"
+    channel_username: "BitcoinCore"
+    max_messages: 30
+    min_message_length: 30
+    rate_limit_seconds: 3.0
+    enabled: true  # Enable if channel exists
+    priority: 2
+
+  - name: "Bitcoin"
+    base_url: "https://t.me/bitcoin"
+    source_type: "telegram_api"
+    channel_username: "bitcoin"
+    max_messages: 30
+    min_message_length: 30
+    rate_limit_seconds: 3.0
+    enabled: true  # Enable if channel exists
+    priority: 2
+
+  - name: "Chainlink-Official"
+    base_url: "https://t.me/chainlinkofficial"
+    source_type: "telegram_api"
+    channel_username: "chainlinkofficial"
+    max_messages: 30
+    min_message_length: 30
+    rate_limit_seconds: 3.0
+    enabled: false  # Enable if you want project updates
+    priority: 2
+
+  - name: "Solana-News"
+    base_url: "https://t.me/solana"
+    source_type: "telegram_api"
+    channel_username: "solana"
+    max_messages: 30
+    min_message_length: 30
+    rate_limit_seconds: 3.0
+    enabled: true  # Enable if you want project updates
+    priority: 2
+
+  # TIER 6: Regional/Language
 # API settings (from old config)
 apis:
   cryptocompare:
