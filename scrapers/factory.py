@@ -5,12 +5,14 @@ from typing import Dict, Any, List
 from scrapers.api_scraper import CryptoCompareAPIScraper
 from scrapers.base import RSSAsyncScraper
 from scrapers.reddit_scraper import RedditScraper
+from scrapers.telegram_api_scraper import TelegramAPIScraper
 from scrapers.web_scraper import WebArchiveScraper
 from scrapers.google_news_scraper import (
     GoogleNewsRSSScaper,
     GoogleNewsWebScraper,
     GoogleNewsCombinedScraper
 )
+from scrapers.telegram_web_scraper import TelegramWebScraper  # NEW
 from utils.http_client import AsyncHTTPClient
 from utils.logger import get_logger
 
@@ -36,6 +38,12 @@ class ScraperFactory:
                 return GoogleNewsWebScraper(source_config, self.http_client, self.global_config)
             elif source_type == 'google_news_combined':
                 return GoogleNewsCombinedScraper(source_config, self.http_client, self.global_config)
+
+            # Telegram scraper (NEW)
+            elif source_type == 'telegram_web':
+                return TelegramWebScraper(source_config, self.http_client, self.global_config)
+            elif source_type == 'telegram_api':
+                return TelegramAPIScraper(source_config, self.http_client, self.global_config)
 
             # Existing scrapers
             elif source_type == 'rss' or source_config.get('rss_url'):
@@ -69,5 +77,6 @@ class ScraperFactory:
             'reddit',
             'google_news_rss',
             'google_news_web',
-            'google_news_combined'
+            'google_news_combined',
+            'telegram'  # NEW
         ]

@@ -1,9 +1,11 @@
 # File: src/config/settings.py
 """Configuration management and validation"""
+import os
 from dataclasses import dataclass
 from typing import Dict, Any, List
 
 import yaml
+from dotenv import load_dotenv
 
 from core.exceptions import ConfigurationError
 from utils.logger import get_logger
@@ -52,6 +54,11 @@ class ConfigManager:
 
             self._validate_config()
             self._apply_defaults()
+
+            load_dotenv()
+            self._config['telegram_api_id'] = os.getenv('TELEGRAM_API_ID', '')
+            self._config['telegram_api_hash'] = os.getenv('TELEGRAM_API_HASH', '')
+            self._config['telegram_phone'] = os.getenv('TELEGRAM_PHONE', '')
 
             logger.info(f"Configuration loaded successfully from {self.config_path}")
             return self._config
