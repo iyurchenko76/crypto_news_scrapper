@@ -8,3 +8,4 @@ feedparser>=6.0.0
 beautifulsoup4>=4.9.0
 lxml>=4.6.0
 telethon>=1.24.0
+dotenv
